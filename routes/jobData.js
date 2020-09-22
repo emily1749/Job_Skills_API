@@ -10,16 +10,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:zipCode", async (req, res) => {
-  zipCode = req.params.zipCode;
-  let skill = "python";
-  let url = "https://www.indeed.com/jobs?q=" + skill + "&l=" + zipCode;
-
-  async function fetchHTML(fetchUrl) {
-    const { data } = await axios.get(fetchUrl);
-    return cheerio.load(data);
-  }
-  const $ = await fetchHTML(url);
-  //   console.log(`Site HTML: ${${"#searchCountPages"}}`);
   var skillsArray = [
     // "C",
     "C%23", //C#
@@ -33,20 +23,44 @@ router.get("/:zipCode", async (req, res) => {
     "swift",
     "typescript",
   ];
-
   let resultList = [];
   let item = "";
-  skillsArray.forEach(skill => {});
-  $('div[id="searchCountPages"]')
-    // .find("div > div > a")
-    .each(function(index, element) {
-      item = $(element).text();
-      console.log(item);
-      item = item.match(/of.{1,}job/);
-      item = item[0].replace(",", "").match(/\d{1,}/);
+  let zipCode = req.params.zipCode;
+  let resultObj = {};
+  //   let skill = "python";
+
+  skillsArray
+    .forEach(async skill => {
+      let url = "https://www.indeed.com/jobs?q=" + skill + "&l=" + zipCode;
+
+      async function fetchHTML(fetchUrl) {
+        const { data } = await axios.get(fetchUrl);
+        return cheerio.load(data);
+      }
+      const $ = await fetchHTML(url);
+      //   console.log(`Site HTML: ${${"#searchCountPages"}}`);
+
+      skillsArray.forEach(skill => {});
+      $('div[id="searchCountPages"]')
+        // .find("div > div > a")
+        .each(function(index, element) {
+          item = $(element).text();
+          console.log(item);
+          item = item.match(/of.{1,}job/);
+          item = item[0].replace(",", "").match(/\d{1,}/);
+        });
+      console.log(item[0]);
+      resultList.push(parseInt(item[0]));
+      console.log(resultList);
+      resultObj[skill] = parseInt(item[0]);
+
+      console.log(resultObj);
+    })
+    .then(result => {
+      console.log(result);
+      res.json(resultObj);
     });
-  console.log(item[0]);
-  list.push(parseInt(item[0]));
-  console.log(list);
+
+  //   res.json(resultObj);
 });
 module.exports = router;
