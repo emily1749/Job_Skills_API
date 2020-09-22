@@ -40,7 +40,6 @@ router.get("/:zipCode", async (req, res) => {
       const $ = await fetchHTML(url);
       //   console.log(`Site HTML: ${${"#searchCountPages"}}`);
 
-      skillsArray.forEach(skill => {});
       $('div[id="searchCountPages"]')
         // .find("div > div > a")
         .each(function(index, element) {
