@@ -60,9 +60,70 @@ router.get("/:city/:state", async (req, res) => {
     // console.log(resultObj);
     // return resultObj;
     if (Object.keys(resultObj).length == 10) {
-      res.send(resultObj);
+      // console.log(resultObj);
+      let result = [];
+      let flag = false;
+      for (const [key, value] of Object.entries(resultObj)) {
+        let keyResult = key;
+        if (!value) {
+          res.send({ message: "Error - data not found" });
+          return;
+        }
+        console.log(key + value);
+
+        if (key === "C%23") {
+          result.push(["C#", value]);
+        }
+        if (key === "typescript") {
+          result.push(["TypeScript", value]);
+        }
+        if (key === "python") {
+          result.push(["Python", value]);
+        }
+        if (key === "golang") {
+          result.push(["Golang", value]);
+        }
+        if (key === "ruby") {
+          result.push(["Ruby", value]);
+        }
+        if (key === "C%2B%2B") {
+          result.push(["C++", value]);
+        }
+        if (key === "php") {
+          result.push(["PHP", value]);
+        }
+        if (key === "swift") {
+          result.push(["Swift", value]);
+        }
+        if (key === "java") {
+          result.push(["Java", value]);
+        }
+        if (key === "javascript") {
+          result.push(["JavaScript", value]);
+        }
+        // if (keyResult === "C%2B%2B") {
+        //   keyResult = "C++";
+        // }
+      }
+      let jsonObj = {};
+      for (let i = 0; i < 10; i++) {
+        jsonObj[result[i][0]] = result[i][1];
+      }
+      // console.log(result);
+      // console.log;
+
+      res.send(jsonObj);
+
+      //send below
+      // res.send(resultObj);
+
+      // console.log(Object.keys(resultObj[1]));
+
       // return resultObj;
     }
+    // } else {
+    //   res.send("Please enter valid city and state");
+    // }
   });
   // .then(result => {
   //   console.log(result);
