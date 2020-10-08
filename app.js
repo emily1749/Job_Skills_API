@@ -14,5 +14,5 @@ app.get("/", (req, res) => {
 
 app.use("/jobData", jobDataRoute);
 
-PORT = process.env.PORT || 3000;
+PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Listening to port ${PORT}`));
