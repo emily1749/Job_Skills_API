@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const bodyParser = require("body-parser");
 const handlebars = require("express-handlebars");
 const jobDataRoute = require("./routes/jobData");
+const jobRoleDataRoute = require("./routes/jobRoleData");
 var cors = require("cors");
 
 const app = express();
@@ -25,12 +26,15 @@ app.get("/", (req, res) => {
   res.send("home page");
 });
 app.use(express.static("public"));
-app.get("/", (req, res) => {
-  res.render("main", { layout: "index" });
-});
+// app.get("/", (req, res) => {
+//   res.render("main", { layout: "index" });
+// });
 
 
 app.use("/jobData", jobDataRoute);
+
+app.use("/jobRoleData", jobRoleDataRoute);
+
 
 mongoose.connect(
   // process.env.DB_CONNECTION,
