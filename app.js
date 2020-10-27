@@ -21,11 +21,11 @@ app.engine(
   })
 );
 
-
+app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.send("home page");
 });
-app.use(express.static("public"));
+
 // app.get("/", (req, res) => {
 //   res.render("main", { layout: "index" });
 // });

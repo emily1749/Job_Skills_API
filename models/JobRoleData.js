@@ -7,11 +7,11 @@ const JobRoleDataSchema= mongoose.Schema({
     },
     averageBaseSalary: String,
     percentSalarySatisfaction: String,
-    commonBenefits: String,
-    commonBenefits: String,
-    commonBenefits: String,
-    commonBenefits: String,
-    commonBenefits: String,
+    benefits: String,
+    benefits: String,
+    benefits: String,
+    benefits: String,
+    benefits: String,
 })
 
 module.exports=mongoose.model("JobRoleData", JobRoleDataSchema)

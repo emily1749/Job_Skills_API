@@ -42,18 +42,54 @@ router.get("/:role" , async (req,res)=>{
       const $ = await fetchHTML(url);
  let salaryNumber = $(".sal-agg-nonbase__average-salary-value") //salary
 let salaryBase= $('.sal-agg-nonbase__average-salary-type')
-      console.log(
-          salaryNumber.text()
-       );
-      console.log(
-          salaryBase.text()
-       );
 let salary = salaryNumber.text()+ " " + salaryBase.text();
 console.log(salary);
 // let array = [];
 // let benefits = $(".checked-list__list.common-benefits__list")
 let percentSatisfied = $(".salary-satisfaction__text");
-console.log(percentSatisfied.text())
+percentSatisfied = percentSatisfied.text()
+percentSatisfied = percentSatisfied.match(/.{1,}%/)
+console.log(percentSatisfied[0])
+// let cities = $('.ranked-list.top-paying-cities-list')
+let array = [];
+let benefits = $('ul.checked-list__list.common-benefits__list li div')
+benefits=benefits.text();
+
+// .each(function(element){
+    // var item=$(element).find('div')
+    // var item = $div.find('div').text()
+    // array.push(element.text())
+// })
+let arrayBenefits = [];
+console.log(benefits);
+// while(benefits) {
+    let element = benefits.match(/^.*?[a-z]{2,}[A-Z0-9]/)[0];
+    element = element.slice(0,element.length-1);
+    console.log(element);
+    arrayBenefits.push(element);
+    benefits=benefits.slice(element.length,);
+    console.log(arrayBenefits);
+    console.log(benefits);
+
+
+
+    element = benefits.match(/^.*?[a-z]{2,}[A-Z0-9]/)[0];
+    element = element.slice(0,element.length-1);
+    console.log(element);
+    arrayBenefits.push(element);
+    benefits=benefits.slice(element.length,);
+    console.log(arrayBenefits);
+    console.log(benefits);
+// }
+// console.log(arrayBenefits);
+// console.log(benefits);
+// console.log(benefits.text());
+// let cities = $('ol.ranked-list__list').each(function(element){
+    // var $div = $(element).find('div.ranked-list__item-title-text')
+    // item = $div.text();
+    // array.push(element)
+// })
+// console.log(array)
 // let cities=$(".ranked-list__item-title-text")
 // console.log("CITIES: " + cities.text())
 // .each((element)=>{
