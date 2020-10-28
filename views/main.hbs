@@ -12,45 +12,63 @@
 
 <body>
     <div class="container">
-        <div class="container-1">
-            <div class="main">
-                <div class="main-text">
-                    <h1>TSA Security </br> Check API</h1>
+        {{!-- <div class="container-1"> --}}
+        <div class="main">
+            {{!-- <div class="main-text"> --}}
+            <div class="main-text">
+                <div>
+                    <h1>Job Data API </h1>
+                    <br />
+
+
+                    <h3>Endpoint Formats</h3>
+                    <h2>All data scraped from Indeed.com</h2>
                     <p>
-                        API returns data on an airport's TSA security check wait time through the day
+                        Retrieve a location's number of job listings for popular coding languages - <br />C#,
+                        TypeScript,
+                        Python, GoLang, Ruby, C++, PHP, Swift, Java, JavaScript
                     </p>
-                    <p> How to use: GET https://airportapi.emlin.repl.co/waitTimes/[airport code]</p>
+                    <div class="highlight-line"> <span class="highlight">GET</span>
+                        https://airportapi.emlin.repl.co/jobData/[city+name]/[state]
+                    </div>
+                    <br />
+                    {{!-- <br /> --}}
+                    <p>
+                        Retrieve an occupation's data - <br /> average base salary, percent satisfaction, common
+                        benefits
+                    </p>
+                    <div class='highlight-line'>
+                        <div>
+                            <span class="highlight">GET</span>
+                            https://airportapi.emlin.repl.co/jobRoleData/[occupation-title]
+                        </div>
 
-                    <h3>Examples: </h3>
-                    <ul>
-                        <li> &nbsp &nbsp https://airportapi.emlin.repl.co/waitTimes/sfo
-                        </li>
-                        <li> &nbsp &nbsp https://airportapi.emlin.repl.co/waitTimes/lax</li>
-                        <li> &nbsp &nbsp https://airportapi.emlin.repl.co/waitTimes/jfk</li>
-                    </ul>
+                    </div>
                 </div>
+
+                <div>
+
+
+                </div>
+
+                <br />
+
+                <br />
+                <h3>Examples </h3>
+                <ul>
+                    <li> &nbsp &nbsp https://airportapi.emlin.repl.co/jobData/san+francisco/ca
+                    </li>
+                    <li> &nbsp &nbsp https://airportapi.emlin.repl.co/jobData/new+york/ny
+                    </li>
+                    <li> &nbsp &nbsp https://airportapi.emlin.repl.co/jobRoleData/teacher</li>
+                    <li> &nbsp &nbsp https://airportapi.emlin.repl.co/jobRoleData/front-end-developer</li>
+                </ul>
+
             </div>
+
+            {{!-- </div> --}}
         </div>
-        <div class="container-2">
-            <div class="box-1">
-                <!-- <p>How to use: <br/> GET https://WEBSITE.repl.co/waitTimes/[airport code]</p> -->
-            </div>
-            <div class="box-2"></div>
-            <div class="box-3">
-                <!-- Examples
-      <ul>
-          <li> https://WEBSITE.repl.co/waitTimes/SFO
-          </li>
-          <li> https://WEBSITE.repl.co/waitTimes/LAX</li>
-          <li> https://WEBSITE.repl.co/waitTimes/JFK</li>
-      </ul> -->
-            </div>
-            <div class="box-4"></div>
-
-
-
-
-        </div>
+        {{!-- </div> --}}
 
 
     </div>

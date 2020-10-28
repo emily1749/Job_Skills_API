@@ -22,13 +22,14 @@ app.engine(
 );
 
 app.use(express.static("public"));
-app.get("/", (req, res) => {
-  res.send("home page");
-});
 
 // app.get("/", (req, res) => {
-//   res.render("main", { layout: "index" });
+//   res.send("home page");
 // });
+
+app.get("/", (req, res) => {
+  res.render("main", { layout: "index" });
+});
 
 
 app.use("/jobData", jobDataRoute);
@@ -38,7 +39,7 @@ app.use("/jobRoleData", jobRoleDataRoute);
 
 mongoose.connect(
   // process.env.DB_CONNECTION,
-  "mongodb+srv://emily123:emily123@cluster0.ldahv.mongodb.net/job_data_API?retryWrites=true&w=majority",
+  "mongodb+srv://emily123:emily123@cluster0.ldahv.mongodb.net/jobdataAPI?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("Connected to database");
