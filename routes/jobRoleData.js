@@ -35,20 +35,9 @@ router.get("/:role", async (req, res) => {
             return cheerio.load(data);
           }
           const $ = await fetchHTML(url).then(async($)=>{
-           const [salary, percentSatisfied, arrayBenefits] = await retrieveSalaryData($);
-
-            const newRole = await new JobRoleData({
-                jobRole: role,
-                averageBaseSalary: salary,
-               percentSatisfied: percentSatisfied[0],
-                 benefits1: arrayBenefits[0],
-               benefits2: arrayBenefits[1],
-                benefits3: arrayBenefits[2],
-                benefits4: arrayBenefits[3],
-                benefits5: arrayBenefits[4],
-            });
+           const newRole = await retrieveSalaryData($);
     
-            const saved = newRole.save()
+          const saved = newRole.save()
             .then( doc => {
                     res.json(doc);
                 }
