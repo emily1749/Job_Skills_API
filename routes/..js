@@ -34,8 +34,9 @@ router.get("/:role", async (req, res) => {
             const { data } = await axios.get(url);
             return cheerio.load(data);
           }
-          const $ = await fetchHTML(url).then(async($)=>{
-                 let salaryNumber = $(".sal-agg-nonbase__average-salary-value") //salary
+          const $ = await fetchHTML(url);
+          
+     let salaryNumber = $(".sal-agg-nonbase__average-salary-value") //salary
     let salaryBase= $('.sal-agg-nonbase__average-salary-type')
     let salary = salaryNumber.text()+ " " + salaryBase.text();
     console.log(salary);
@@ -85,14 +86,6 @@ router.get("/:role", async (req, res) => {
                 console.error(error);
 
     })
-          }).catch(()=>{
-            console.log("failure")
-            res.send({
-              status: "failure"
-            })
-          })
-          
-
     }
 })
   })
