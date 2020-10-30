@@ -53,7 +53,8 @@
   h1 {
     font-size: 3.7rem;
     /* font-weight: 900; */
-    letter-spacing: 1rem; border-bottom: 1px solid #fff;
+    letter-spacing: 1.5rem; 
+    border-bottom: 1px solid #fff;
     text-transform: uppercase;
   }
   

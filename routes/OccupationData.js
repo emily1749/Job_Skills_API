@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 const axios = require("axios");
 const OccupationData = require("../models/OccupationData");
 const router = express.Router();
-const {retrieveSalaryData} =require('./occupationHelpers')
+const {retrieveSalaryData} =require('./helpers/occupationHelpers')
 const app = express();
 
 router.get("/", (req, res) => {
@@ -16,10 +16,9 @@ router.get("/:role", async (req, res) => {
   role = role.toLowerCase();
   let url = "https://www.indeed.com/career/" + role + "/salaries";
 
-  //First check if airport is already in the database
   OccupationData.countDocuments({ occupation: role }, async (err, count) => {
+    //check if already in database
     if (count === 1) {
-      //If count is 1, it is in database. Return the matching document.
       try {
         const dbResult = await OccupationData.find({
           occupation: role,
@@ -41,13 +40,13 @@ router.get("/:role", async (req, res) => {
             .then( doc => {
                     res.json(doc);
                 }
-            ).catch(error=>{
-                console.error(error);
+            ).catch(()=>{
+              res.send({message: "failure"})
+                // console.error(error);
     })
           }).catch(()=>{
-            console.log("failure")
             res.send({
-              status: "failure"
+              message: "No data available for input occupation"
             })
           })
     }

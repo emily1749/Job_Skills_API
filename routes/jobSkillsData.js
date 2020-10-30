@@ -12,6 +12,9 @@ router.get("/", (req, res) => {
 router.get("/:city/:state", async (req, res) => {
   let city = req.params.city;
   let state = req.params.state;
+  let resultList = [];
+  let item = "";
+  let resultObj = {};
   var skillsArray = [
     "C%23", //C#
     "C%2B%2B", //C++
@@ -24,9 +27,6 @@ router.get("/:city/:state", async (req, res) => {
     "swift",
     "typescript",
   ];
-  let resultList = [];
-  let item = "";
-  let resultObj = {};
 
   skillsArray.forEach(async skill => {
     let url =
@@ -39,22 +39,20 @@ router.get("/:city/:state", async (req, res) => {
     const $ = await fetchHTML(url);
 
     $('div[id="searchCountPages"]')
-      // .find("div > div > a")
       .each(function(index, element) {
         item = $(element).text();
-        // console.log(item);
         item = item.match(/of.{1,}job/);
         item = item[0].replace(",", "").match(/\d{1,}/);
       });
-    // console.log(item[0]);
+
     resultList.push(parseInt(item[0]));
     resultObj[skill] = parseInt(item[0]);
+
     if (Object.keys(resultObj).length == 10) {
-      // console.log(resultObj);
       let result = [];
       
       for (const [key, value] of Object.entries(resultObj)) {
-        let keyResult = key;
+       
         if (!value) {
            res.send({ message: "Error - data not found" })
         }
@@ -71,9 +69,7 @@ router.get("/:city/:state", async (req, res) => {
         : (key === "javascript") ?  result.push(["JavaScript", value])
        : null
         }
-   
       }
-
       let jsonObj = {};
       for (let i = 0; i < 10; i++) {
         jsonObj[result[i][0]] = result[i][1];
