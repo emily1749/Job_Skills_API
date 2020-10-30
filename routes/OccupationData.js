@@ -2,13 +2,13 @@ const express = require("express");
 // const request = require("request");
 const cheerio = require("cheerio");
 const axios = require("axios");
-const JobRoleData = require("../models/JobRoleData");
+const OccupationData = require("../models/OccupationData");
 const router = express.Router();
-const {retrieveSalaryData} =require('./helpers')
+const {retrieveSalaryData} =require('./occupationHelpers')
 const app = express();
 
 router.get("/", (req, res) => {
-  res.send("On the job role data page");
+  res.send("On the occupation data page");
 });
 
 router.get("/:role", async (req, res) => {
@@ -17,12 +17,12 @@ router.get("/:role", async (req, res) => {
   let url = "https://www.indeed.com/career/" + role + "/salaries";
 
   //First check if airport is already in the database
-  JobRoleData.countDocuments({ jobRole: role }, async (err, count) => {
+  OccupationData.countDocuments({ occupation: role }, async (err, count) => {
     if (count === 1) {
       //If count is 1, it is in database. Return the matching document.
       try {
-        const dbResult = await JobRoleData.find({
-          jobRole: role,
+        const dbResult = await OccupationData.find({
+          occupation: role,
         });
         res.send(dbResult);
         return;
@@ -43,7 +43,6 @@ router.get("/:role", async (req, res) => {
                 }
             ).catch(error=>{
                 console.error(error);
-
     })
           }).catch(()=>{
             console.log("failure")
@@ -51,8 +50,6 @@ router.get("/:role", async (req, res) => {
               status: "failure"
             })
           })
-          
-
     }
 })
   })

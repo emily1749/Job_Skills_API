@@ -2,8 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser");
 const handlebars = require("express-handlebars");
-const jobDataRoute = require("./routes/jobData");
-const jobRoleDataRoute = require("./routes/jobRoleData");
+const jobSkillsDataRoute = require("./routes/jobSkillsData");
+const occupationDataRoute = require("./routes/occupationData");
 var cors = require("cors");
 
 const app = express();
@@ -32,9 +32,9 @@ app.get("/", (req, res) => {
 });
 
 
-app.use("/jobData", jobDataRoute);
+app.use("/jobSkillsData", jobSkillsDataRoute);
 
-app.use("/jobRoleData", jobRoleDataRoute);
+app.use("/occupationData", occupationDataRoute);
 
 
 mongoose.connect(

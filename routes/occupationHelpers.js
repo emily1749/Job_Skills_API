@@ -1,4 +1,4 @@
-const JobRoleData = require("../models/JobRoleData");
+const OccupationData = require("../models/OccupationData");
 
 exports.retrieveSalaryData=async function($){
     let salaryNumber = $(".sal-agg-nonbase__average-salary-value") //salary
@@ -25,8 +25,8 @@ while(arrayBenefits.length<4){
 }
 arrayBenefits.push(benefits);
 
-const newRole = await new JobRoleData({
-    jobRole: role,
+const newRole = await new OccupationData({
+    occupation: role,
     averageBaseSalary: salary,
    percentSatisfied: percentSatisfied[0],
      benefits1: arrayBenefits[0],
