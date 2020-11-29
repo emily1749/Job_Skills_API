@@ -85,5 +85,6 @@ router.get('/:city/:state', async (req, res) => {
     }
   });
 });
+// module.exports = app.use(require('../../routes/jobSkillsData'));
 
 module.exports = router;

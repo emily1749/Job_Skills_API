@@ -7,7 +7,7 @@ const { retrieveSalaryData } = require('../lib/helpers');
 const app = express();
 
 router.get('/', (req, res) => {
-  res.send('On the occupation data page');
+  res.json({ status: 'success', message: 'On the Occupation Data page' });
 });
 
 router.get('/:role', async (req, res) => {
@@ -46,6 +46,7 @@ router.get('/:role', async (req, res) => {
             });
         })
         .catch(() => {
+          res.status(401);
           res.send({
             message: 'No data available for input occupation',
           });
