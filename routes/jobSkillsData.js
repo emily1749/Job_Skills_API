@@ -6,7 +6,7 @@ const router = express.Router();
 const app = express();
 
 router.get('/', (req, res) => {
-  res.send('On the Job Skills Data page');
+  res.json({ status: 'success', message: 'On the Job Skills Data page' });
 });
 
 router.get('/:city/:state', async (req, res) => {
@@ -85,4 +85,5 @@ router.get('/:city/:state', async (req, res) => {
     }
   });
 });
+
 module.exports = router;

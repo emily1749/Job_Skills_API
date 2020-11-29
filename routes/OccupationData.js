@@ -1,10 +1,9 @@
 const express = require('express');
-// const request = require("request");
 const cheerio = require('cheerio');
 const axios = require('axios');
 const OccupationData = require('../models/OccupationData');
 const router = express.Router();
-const { retrieveSalaryData } = require('./helpers/occupationHelpers');
+const { retrieveSalaryData } = require('../lib/helpers');
 const app = express();
 
 router.get('/', (req, res) => {
