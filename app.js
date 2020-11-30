@@ -48,10 +48,10 @@ app.get('/', (req, res) => {
 
 mongoose.connect(
   'mongodb+srv://emily123:emily123@cluster0.ldahv.mongodb.net/jobdataAPI?retryWrites=true&w=majority',
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log('Connected to database');
-  }
+  { useNewUrlParser: true, useUnifiedTopology: true }
+  // () => {
+  //   console.log('Connected to database');
+  // }
 );
 
 PORT = process.env.PORT || 5000;

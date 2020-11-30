@@ -6,7 +6,7 @@ const router = express.Router();
 const app = express();
 
 router.get('/', (req, res) => {
-  res.json({ status: 'success', message: 'On the Job Skills Data page' });
+  res.json({ status: 'success', message: 'On the Job Skills page' });
 });
 
 router.get('/:city/:state', async (req, res) => {
@@ -52,7 +52,10 @@ router.get('/:city/:state', async (req, res) => {
 
       for (const [key, value] of Object.entries(resultObj)) {
         if (!value) {
-          res.send({ message: 'Error - data not found' });
+          res.status(401);
+          res.send({
+            message: 'No data available for input location',
+          });
         } else {
           key === 'C%23'
             ? result.push(['C#', value])
@@ -85,6 +88,4 @@ router.get('/:city/:state', async (req, res) => {
     }
   });
 });
-// module.exports = app.use(require('../../routes/jobSkillsData'));
-
 module.exports = router;
