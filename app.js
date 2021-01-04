@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 
 const runner = new mocha({});
 
-runner.addFile('./public/test/appTest.js');
+runner.addFile('./public/test/app.test.js');
 
 runner.run(failures => {
   if (failures) {

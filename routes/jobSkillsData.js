@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const axios = require('axios');
 const router = express.Router();
 
-const app = express();
+// const app = express();
 
 router.get('/', (req, res) => {
   res.json({ status: 'success', message: 'On the Job Skills page' });

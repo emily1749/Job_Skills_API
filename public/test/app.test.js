@@ -1,15 +1,18 @@
 const chai = require('chai');
-// var assert = require('assert');
 const chaiHttp = require('chai-http');
 var { describe, it } = require('mocha');
 
 const expect = chai.expect;
 chai.use(chaiHttp);
 
+let route = 'http://jobdataapi.emlin.repl.co';
+let jobSkillsRoute = 'http://jobdataapi.emlin.repl.co/jobSkillsData';
+let occupationRoute = 'http://jobdataapi.emlin.repl.co/occupationData';
+
 describe('Testing the API Server', () => {
   it('Tests the base route and returns status', done => {
     chai
-      .request('http://localhost:5000')
+      .request(route)
       .get('/')
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -20,9 +23,8 @@ describe('Testing the API Server', () => {
 
 describe('Testing the Job Skills endpoint', () => {
   it('Tests the Job Skills Data and returns status', done => {
-    // this.timeout(0);
     chai
-      .request('http://localhost:5000/jobSkillsData')
+      .request(jobSkillsRoute)
       .get('/')
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -32,9 +34,9 @@ describe('Testing the Job Skills endpoint', () => {
       });
   });
 
-  it("Tests the endpoint to get a location's job data", done => {
+  it("Test to get a location's job data", done => {
     chai
-      .request('http://localhost:5000/jobSkillsData')
+      .request(jobSkillsRoute)
       .get('/san+francisco/ca')
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -59,10 +61,10 @@ describe('Testing the Job Skills endpoint', () => {
 
   it('Tests the status for invalid location data', done => {
     chai
-      .request('http://localhost:5000/jobSkillsData')
+      .request(jobSkillsRoute)
       .get('/test/test')
       .end((err, res) => {
-        expect(res).to.have.status(401);
+        expect(res).to.not.have.status(200);
         done();
       });
   });
@@ -71,7 +73,7 @@ describe('Testing the Job Skills endpoint', () => {
 describe('Testing the Occupation Data endpoint', () => {
   it('Tests the Occupation Data and returns status', done => {
     chai
-      .request('http://localhost:5000/occupationData')
+      .request(occupationRoute)
       .get('/')
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -81,9 +83,9 @@ describe('Testing the Occupation Data endpoint', () => {
       });
   });
 
-  it("Tests the endpoint to get an occupation's data", done => {
+  it("Test to get an occupation's data", done => {
     chai
-      .request('http://localhost:5000/occupationData')
+      .request(occupationRoute)
       .get('/front-end-developer')
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -106,7 +108,7 @@ describe('Testing the Occupation Data endpoint', () => {
 
   it('Tests the status for invalid occupation data', done => {
     chai
-      .request('http://localhost:5000/occupationData')
+      .request(occupationRoute)
       .get('/test')
       .end((err, res) => {
         expect(res).to.have.status(401);

@@ -4,7 +4,7 @@ const axios = require('axios');
 const OccupationData = require('../models/OccupationData');
 const router = express.Router();
 const { retrieveSalaryData } = require('../lib/helpers');
-const app = express();
+// const app = express();
 
 router.get('/', (req, res) => {
   res.json({ status: 'success', message: 'On the Occupation Data page' });
